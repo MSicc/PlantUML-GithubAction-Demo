@@ -24,6 +24,7 @@ activate ga
 ga -> ga : Setup Java 17
 ga -> ga : Install GraphViz
 ga -> ga : Download PlantUML.jar
+ga -> ga : Configure permissions\n(contents: write)
 
 ga -> puml : Find all .puml files\nin docs/
 activate puml
@@ -37,7 +38,7 @@ puml -> ga : All diagrams rendered
 deactivate puml
 
 ga -> repo : Commit generated SVGs\nwith auto-commit
-ga -> repo : Push changes
+ga -> repo : Push changes\n(with GITHUB_TOKEN)
 deactivate ga
 
 repo -> dev : Updated repository\nwith rendered diagrams
@@ -48,6 +49,7 @@ note over dev, svg
   
   ✅ Automatically renders .puml to .svg
   ✅ Commits generated diagrams
+  ✅ Handles permissions correctly
   ✅ Perfect for documentation
   ✅ No manual intervention needed
 end note
