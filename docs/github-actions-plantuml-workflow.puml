@@ -1,0 +1,52 @@
+@startuml github-actions-plantuml-workflow
+
+title GitHub Actions PlantUML Rendering Workflow
+
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+actor Developer as dev
+participant "GitHub Repository" as repo
+participant "GitHub Actions" as ga
+participant "PlantUML Engine" as puml
+participant "Generated SVG" as svg
+
+dev -> repo : Push .puml files\nto docs branch
+activate repo
+
+repo -> ga : Trigger workflow\n(on push to docs)
+activate ga
+
+ga -> ga : Setup Java 17
+ga -> ga : Install GraphViz
+ga -> ga : Download PlantUML.jar
+
+ga -> puml : Find all .puml files\nin docs/
+activate puml
+
+loop for each .puml file
+    puml -> puml : Generate SVG
+    puml -> svg : Create .svg file
+end
+
+puml -> ga : All diagrams rendered
+deactivate puml
+
+ga -> repo : Commit generated SVGs\nwith auto-commit
+ga -> repo : Push changes
+deactivate ga
+
+repo -> dev : Updated repository\nwith rendered diagrams
+deactivate repo
+
+note over dev, svg
+  **Automated PlantUML Workflow**
+  
+  ✅ Automatically renders .puml to .svg
+  ✅ Commits generated diagrams
+  ✅ Perfect for documentation
+  ✅ No manual intervention needed
+end note
+
+@enduml
