@@ -1,9 +1,10 @@
 @startuml github-actions-plantuml-workflow
 
+' Updated to trigger GitHub Action
+
 title GitHub Actions PlantUML Rendering Workflow
 
 skinparam backgroundColor #FAFAFA
-' Updated to trigger GitHub Action
 skinparam defaultFontName Arial
 skinparam defaultFontSize 12
 
