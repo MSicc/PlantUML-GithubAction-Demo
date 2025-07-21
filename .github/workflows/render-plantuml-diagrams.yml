@@ -5,7 +5,7 @@ on:
     branches:
       - docs
     paths:
-      - 'docs/**/*.puml'
+      - 'docs/*.puml'
 
   workflow_dispatch:  # manual trigger via GitHub UI
 
