@@ -36,3 +36,5 @@ docs/
 4. Include the generated SVGs in your documentation
 
 Perfect for blog posts, documentation, and automated diagram generation! 🎉
+
+
